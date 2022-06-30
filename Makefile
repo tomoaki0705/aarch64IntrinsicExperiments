@@ -1,7 +1,13 @@
 CC=g++
 OPTIMIZE=-O0
 
-all: complexNumber_v83 dotProduct_v82_dotprod cryptoSM4_v82_sm4 cryptoSHA3_v82_sha3 fmaLongFP16_v82_fp16fml roundingTZ_v85
+TARGETS=complexNumber_v83 dotProduct_v82_dotprod cryptoSM4_v82_sm4 cryptoSHA3_v82_sha3 fmaLongFP16_v82_fp16fml roundingTZ_v85 javascrptConverToSignedTowardZero_v83_jscvt roundToIntegerTowardZero_v85 randomNumberGenerator_rng cryptoCRC halfFloatOperation_v82_fp16
+
+all: $(TARGETS)
+
+.PHONY: clean
+clean:
+	rm -f  $(TARGETS)
 
 complexNumber_v83:
 	$(CC) $(OPTIMIZE) -o $@ -march=armv8.3-a complexNumbers.cpp
@@ -20,3 +26,20 @@ fmaLongFP16_v82_fp16fml:
 
 roundingTZ_v85:
 	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a roundingTowardZero.cpp
+
+# Non-NEON ACLE intrinsics
+
+javascrptConverToSignedTowardZero_v83_jscvt:
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.3-a javascriptConvertToSignedTowardZero.cpp
+
+roundToIntegerTowardZero_v85:
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a roundToIntegerTowardZero.cpp
+
+randomNumberGenerator_rng:
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a+rng randomNumberGenerator.cpp
+
+cryptoCRC:
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8-a+crc cryptoCRC32.cpp
+
+halfFloatOperation_v82_fp16:
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+fp16 halfFloatOperation.cpp
