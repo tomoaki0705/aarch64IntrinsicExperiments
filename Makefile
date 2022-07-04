@@ -9,37 +9,37 @@ all: $(TARGETS)
 clean:
 	rm -f  $(TARGETS)
 
-complexNumber_v83:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.3-a complexNumbers.cpp
+complexNumber_v83: complexNumbers.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.3-a $<
 
-dotProduct_v82_dotprod:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+dotprod dotProduct.cpp
+dotProduct_v82_dotprod: dotProduct.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+dotprod $<
 
-cryptoSM4_v82_sm4:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+sm4 cryptoSM4.cpp
+cryptoSM4_v82_sm4: cryptoSM4.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+sm4 $<
 
-cryptoSHA3_v82_sha3:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+sha3 cryptoSHA3.cpp
+cryptoSHA3_v82_sha3: cryptoSHA3.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+sha3 $<
 
-fmaLongFP16_v82_fp16fml:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+fp16fml FMALongHalf.cpp
+fmaLongFP16_v82_fp16fml: FMALongHalf.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+fp16fml $<
 
-roundingTZ_v85:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a roundingTowardZero.cpp
+roundingTZ_v85: roundingTowardZero.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a $<
 
 # Non-NEON ACLE intrinsics
 
-javascrptConverToSignedTowardZero_v83_jscvt:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.3-a javascriptConvertToSignedTowardZero.cpp
+javascrptConverToSignedTowardZero_v83_jscvt: javascriptConvertToSignedTowardZero.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.3-a $<
 
-roundToIntegerTowardZero_v85:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a roundToIntegerTowardZero.cpp
+roundToIntegerTowardZero_v85: roundToIntegerTowardZero.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a $<
 
-randomNumberGenerator_rng:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a+rng randomNumberGenerator.cpp
+randomNumberGenerator_rng: randomNumberGenerator.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.5-a+rng $<
 
-cryptoCRC:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8-a+crc cryptoCRC32.cpp
+cryptoCRC: cryptoCRC32.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8-a+crc $<
 
-halfFloatOperation_v82_fp16:
-	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+fp16 halfFloatOperation.cpp
+halfFloatOperation_v82_fp16: halfFloatOperation.cpp
+	$(CC) $(OPTIMIZE) -o $@ -march=armv8.2-a+fp16 $<
