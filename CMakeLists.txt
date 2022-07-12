@@ -2,13 +2,11 @@ cmake_minimum_required(VERSION 3.5)
 set(optimize "-O0")
 project(armExtentions CXX)
 
-macro(check_compiler_option FLAG RESULT)
+macro(check_compiler_option FLAG SRC RESULT)
 if(NOT DEFINED ${RESULT})
-  set(_fname "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/src.cxx")
-  file(WRITE "${_fname}" "int main() { return 0; }\n")
   try_compile(${RESULT}
       "${CMAKE_BINARY_DIR}"
-      "${_fname}"
+      "${SRC}"
       COMPILE_DEFINITIONS "${FLAG}"
       OUTPUT_VARIABLE OUTPUT)
    message(STATUS "FLAG    ${FLAG}")
@@ -18,7 +16,7 @@ endif()
 endmacro()
 
 macro(check_and_add target flag source)
-  check_compiler_option(${flag} RESULT)
+  check_compiler_option(${flag} ${CMAKE_SOURCE_DIR}/${source} RESULT)
   if(${RESULT})
     add_executable(${target} ${source} ${ARGN})
     message(STATUS "target     ${target} ${${target}}")
@@ -43,24 +41,24 @@ endmacro()
 #roundToIntegerTowardZero.cpp
 #TARGETS=complexNumber_v83 dotProduct_v82_dotprod cryptoSM4_v82_sm4 cryptoSHA3_v82_sha3 fmaLongFP16_v82_fp16fml roundingTZ_v85 javascrptConverToSignedTowardZero_v83_jscvt roundToIntegerTowardZero_v85 randomNumberGenerator_rng cryptoCRC halfFloatOperation_v82_fp16
 
-check_compiler_option("-march=armv8-a+crc"       HAVE_ARMV8_A_CRC)
-check_compiler_option("-march=armv8.2-a+fp16"    HAVE_ARMV8_2_A_FP16)
-check_compiler_option("-march=armv8.2-a+fp16fml" HAVE_ARMV8_2_A_FP16FML)
-check_compiler_option("-march=armv8.2-a+dotprod" HAVE_ARMV8_2_A_DOTPROD)
-check_compiler_option("-march=armv8.2-a+sha3"    HAVE_ARMV8_2_A_SHA3)
-check_compiler_option("-march=armv8.2-a+sm4"     HAVE_ARMV8_2_A_SM4)
-check_compiler_option("-march=armv8.3-a"         HAVE_ARMV8_3_A)
-check_compiler_option("-march=armv8.5-a"         HAVE_ARMV8_5_A)
-check_compiler_option("-march=armv8.5-a+rng"     HAVE_ARMV8_5_A_RNG)
-message(STATUS "HAVE_ARMV8_A_CRC       ${HAVE_ARMV8_A_CRC}")
-message(STATUS "HAVE_ARMV8_2_A_FP16    ${HAVE_ARMV8_2_A_FP16}")
-message(STATUS "HAVE_ARMV8_2_A_FP16FML ${HAVE_ARMV8_2_A_FP16FML}")
-message(STATUS "HAVE_ARMV8_2_A_DOTPROD ${HAVE_ARMV8_2_A_DOTPROD}")
-message(STATUS "HAVE_ARMV8_2_A_SHA3    ${HAVE_ARMV8_2_A_SHA3}")
-message(STATUS "HAVE_ARMV8_2_A_SM4     ${HAVE_ARMV8_2_A_SM4}")
-message(STATUS "HAVE_ARMV8_3_A         ${HAVE_ARMV8_3_A}")
-message(STATUS "HAVE_ARMV8_5_A         ${HAVE_ARMV8_5_A}")
-message(STATUS "HAVE_ARMV8_5_A_RNG     ${HAVE_ARMV8_5_A_RNG}")
+#check_compiler_option("-march=armv8-a+crc"       HAVE_ARMV8_A_CRC)
+#check_compiler_option("-march=armv8.2-a+fp16"    HAVE_ARMV8_2_A_FP16)
+#check_compiler_option("-march=armv8.2-a+fp16fml" HAVE_ARMV8_2_A_FP16FML)
+#check_compiler_option("-march=armv8.2-a+dotprod" HAVE_ARMV8_2_A_DOTPROD)
+#check_compiler_option("-march=armv8.2-a+sha3"    HAVE_ARMV8_2_A_SHA3)
+#check_compiler_option("-march=armv8.2-a+sm4"     HAVE_ARMV8_2_A_SM4)
+#check_compiler_option("-march=armv8.3-a"         HAVE_ARMV8_3_A)
+#check_compiler_option("-march=armv8.5-a"         HAVE_ARMV8_5_A)
+#check_compiler_option("-march=armv8.5-a+rng"     HAVE_ARMV8_5_A_RNG)
+#message(STATUS "HAVE_ARMV8_A_CRC       ${HAVE_ARMV8_A_CRC}")
+#message(STATUS "HAVE_ARMV8_2_A_FP16    ${HAVE_ARMV8_2_A_FP16}")
+#message(STATUS "HAVE_ARMV8_2_A_FP16FML ${HAVE_ARMV8_2_A_FP16FML}")
+#message(STATUS "HAVE_ARMV8_2_A_DOTPROD ${HAVE_ARMV8_2_A_DOTPROD}")
+#message(STATUS "HAVE_ARMV8_2_A_SHA3    ${HAVE_ARMV8_2_A_SHA3}")
+#message(STATUS "HAVE_ARMV8_2_A_SM4     ${HAVE_ARMV8_2_A_SM4}")
+#message(STATUS "HAVE_ARMV8_3_A         ${HAVE_ARMV8_3_A}")
+#message(STATUS "HAVE_ARMV8_5_A         ${HAVE_ARMV8_5_A}")
+#message(STATUS "HAVE_ARMV8_5_A_RNG     ${HAVE_ARMV8_5_A_RNG}")
 
 
 
