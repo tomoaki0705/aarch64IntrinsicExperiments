@@ -3,13 +3,11 @@ set(optimize "-O0")
 project(armExtentions CXX)
 
 macro(check_compiler_option FLAG SRC RESULT)
-if(NOT DEFINED ${RESULT})
   try_compile(${RESULT}
       "${CMAKE_BINARY_DIR}"
       "${SRC}"
       COMPILE_DEFINITIONS "${FLAG}"
       OUTPUT_VARIABLE OUTPUT)
-endif()
 endmacro()
 
 macro(check_and_add target flag source)
