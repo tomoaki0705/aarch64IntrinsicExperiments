@@ -47,4 +47,11 @@ check_and_add(javascrptConverToSignedTowardZero_v83_jscvt -march=armv8.3-a javas
 check_and_add(roundToIntegerTowardZero_v85 -march=armv8.5-a         roundToIntegerTowardZero.cpp)
 check_and_add(randomNumberGenerator_rng    -march=armv8.5-a+rng     randomNumberGenerator.cpp)
 check_and_add(halfFloatOperation_v82_fp16  -march=armv8.2-a+fp16    halfFloatOperation.cpp)
-
+check_and_add(transactionalMemoryExtension -march=armv8.2-a+tme     transactionalMemoryExtension.cpp)
+check_and_add(atomicLoad64B                -march=armv8.6-a+ls64    atomicLoad64B.cpp)
+check_and_add(memoryTagging                -march=armv8.2-a+memtag  memoryTagging.cpp)
+check_and_add(singleBF16                   -march=armv8.2-a+bf16    singleBF16.cpp)
+check_and_add(FMAtwice                     -march=armv8.2-a+rdma    FMAtwice.cpp)
+check_and_add(cryptoAES                    -march=armv8.2-a+crypto  cryptoAES.cpp)
+check_and_add(vectorBF16                   -march=armv8.2-a+bf16    vectorBF16.cpp)
+check_and_add(int8MatrixMultiply           -march=armv8.2-a+i8mm    int8MatrixMultiply.cpp)
